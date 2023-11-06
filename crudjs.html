@@ -1,0 +1,257 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>CURD USING JS</title>
+		<link href="C:\Users\ADMIN\Documents\Raji\stylesheet.css" rel="stylesheet">
+		<link href="C:\Users\ADMIN\Documents\Raji\bootstrap-5.2.1-dist\bootstrap-5.2.1-dist\css\bootstrap.min.css"" rel="stylesheet">
+		<style>
+			.card{
+				background-color: purple;
+			}
+			.form-lebal,table,tr,th{
+				color:white;
+				font-family:'Times New Roman', Times, serif;
+				font-size: 1rem;
+				}
+			.table{
+				color:white;
+			}
+			body{
+				margin:15%;
+				margin-top:5%;
+				background-color: aqua;
+				}
+			 h4 {
+				text-align:center;
+				color:white;
+				font-family: 'Times New Roman', Times, serif;
+			}
+		</style>
+			<body>
+				<div class="container">
+				<div class="card" style="width:45rem">
+					<div class="form-1">
+						<form onsubmit="onformsubmit()">
+							<div class="row">
+								<div class="col-xs-6">
+									<h4 class="text-blue p-2 mx-auto">Registeration Form</h4>
+									<lebal class="form-lebal">Name</lebal><input type="text" class="form-control"id="txt_name" placeholder="Name" />
+							    </div>
+							</div><br><br>
+							<lebal class="form-lebal">Degree</lebal>
+								<select class="form-select" id="ddl_degree" class="dropdown menu" >
+									<option selected></option>
+									<option>B.E.,</option>
+									<option>B.Tech.,</option>
+									<option>B.Sc.,</option>
+									<option>B.Com.,</option>
+								</select><br><br>
+								<div class="row" >
+									<div class="col-xs-6">
+										<lebal class="form-lebal">Email</lebal><input type="email" class="form-control"placeholder="Email" id="txt_email"/>
+									</div>
+								</div><br><br>
+								<div class="row" >
+									<div class="col-xs-6">
+										<lebal class="form-lebal">Password</lebal><input type="password"  class="form-control" placeholder="Password" id="txt_password"/>
+									</div>
+								</div><br><br>
+								<div>
+									<input type="button" class="btn btn-primary" onclick="onformsubmit()" value="Submit"id="btn_submit"/>
+									<input type="reset" class="btn btn-danger" onclick="resetform()" value="Reset"id="btn_reset"/>
+								</div>
+						</form>
+					</div>
+				</div>
+				</div><br><br>
+				<div class="container">
+				<div class="card" style="width:45rem">
+					<table class="table" id="tbl_reg">
+						<thead ><h4 >RegisterationDetails</h4>
+						</thead>	
+						<tr>
+							<th class="table">Name</th>
+							<th class="table">Degree</th>
+							<th class="table">Email</th>
+							<th class="table">Password</th>
+							<th class="table">Action</th>
+						</tr>
+						<!-- <tr> -->
+							<!-- <td></td> -->
+							<!-- <td></td> -->
+							<!-- <td></td> -->
+							<!-- <td></td> -->
+							<!-- <td> -->
+								<!-- <input type="button" class="btn btn-info" onclick="onedit(this)" id="btn_edit"value="edit"></button> -->
+								<!-- <input type="button" class="btn btn-warning" onclick="ondelete(this)" id="btn_delete"value="delete"></button> -->
+							<!-- </td> -->
+						<!-- </tr> -->
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				</div>
+            </body>
+				<script>
+					var selectedrow=null;
+					
+					
+						<!-- action.innerHTML=document.getElementById("tbl_action")="<button>Delete</button>"; -->
+						/*action.innerHTML=document.getElementById("tbl_action")='<button>Edit</button>';
+						action.innerHTML=document.getElementById("tbl_action")='<button>Delete</button>';*/
+						/*document.getElementById("btn_submit").onclick= function () {
+							this.innerHTML="Update";
+							}*/
+						//	resetform();
+						//return false;
+					//} */
+					
+					/*const btn=document.getElementById('btn_submit');
+					//change button text on click
+					btn.addEventListener('click',function onformsubmit(){
+					btn.textcontent='Update'; 
+					
+						return false;
+					});*/
+					function insertnewrecord(data) {
+					debugger
+    var table = document.getElementById("tbl_reg").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    cell1 = newRow.insertCell(0);
+    cell1.innerHTML = data.name;
+    cell2 = newRow.insertCell(1);
+    cell2.innerHTML = data.degree;
+    cell3 = newRow.insertCell(2);
+    cell3.innerHTML = data.email;
+    cell4 = newRow.insertCell(3);
+    cell4.innerHTML = data.password;
+    cell5 = newRow.insertCell(4);
+    cell5.innerHTML = "<button onclick='onedit(this)'>Edit</button><button onclick='ondelete(this)'>Delete</button>";
+}
+	
+					<!-- function insertnewrecord(data) -->
+					<!-- { -->
+					<!-- debugger -->
+						<!-- var table=document.getElementById("tbl_reg").getElementsByTagName('tbody')[0]; -->
+						<!-- var newRow=table.insertRow(table.length); -->
+						<!-- //var row=table.insertRow(-1); -->
+						<!-- var name=row.insertCell(0); -->
+						<!-- var degree=row.insertCell(1); -->
+						<!-- var email=row.insertCell(2); -->
+						<!-- var password=row.insertCell(3); -->
+						<!-- var action=row.insertCell(4); -->
+						<!-- name.innerHTML=document.getElementById("txt_name").value; -->
+						<!-- degree.innerHTML=document.getElementById("ddl_degree").value; -->
+						<!-- email.innerHTML=document.getElementById("txt_email").value; -->
+						<!-- password.innerHTML=document.getElementById("txt_password").value; -->
+						<!-- action.innerHTML="<button onclick='onedit(this)'>Edit</button><button onclick='ondelete(this)'>Delete</button>"; -->
+						<!-- /*var cell1=newRow.insertCell(0); -->
+						<!-- cell1.innerHTML=data.name; -->
+						<!-- cell2=newRow.insertCell(1); -->
+						<!-- cell2.innerHTML=data.degree; -->
+						<!-- cell3=newRow.insertCell(2); -->
+						<!-- cell3.innerHTML=data.email; -->
+						<!-- cell4=newRow.insertCell(3); -->
+						<!-- cell4.innerHTML=data.password; -->
+						<!-- cell5=newRow.insertCell(4); -->
+						<!-- cell5.innerHTML.data.action="<button onclick='onedit(this)'>Edit</button><button onclick='ondelete(this)'>Delete</button>" -->
+						<!-- <!-- cell5.innerHTML = <button onclick='onedit(this)'>Edit</button> --> -->
+						<!-- <!-- <button onclick='ondelete(this)'>Delete</button>; -->*/ -->
+					<!-- } -->
+					
+					
+
+					function onformsubmit()
+					{	
+						debugger;
+						var formdata=readformdata();
+							if(selectedrow==null){
+								insertnewrecord(formdata);
+								resetform();
+							}
+							else{
+								updaterecord(formdata);
+								resetform();
+						document.getElementById("btn_submit").value="Submit";
+							}
+								
+					}
+					
+					function readformdata()
+					{
+						var formdata={};
+						formdata["name"]=document.getElementById("txt_name").value;
+						formdata["degree"]=document.getElementById("ddl_degree").value;
+						formdata["email"]=document.getElementById("txt_email").value;
+						formdata["password"]=document.getElementById("txt_password").value;
+						return formdata;
+					}
+					
+					
+					function resetform()
+					{
+						/*debugger;*/
+						document.getElementById("txt_name").value="";
+						document.getElementById("ddl_degree").value="";
+						document.getElementById("txt_email").value="";
+						document.getElementById("txt_password").value="";
+						selectedrow=null;
+					}
+					
+					function onedit(td)
+					{
+						//debugger;
+						selectedrow=td.parentElement.parentElement;
+						document.getElementById("txt_name").value=selectedrow.cells[0].innerHTML;
+						document.getElementById("ddl_degree").value=selectedrow.cells[1].innerHTML;
+						document.getElementById("txt_email").value=selectedrow.cells[2].innerHTML;
+						document.getElementById("txt_password").value=selectedrow.cells[3].innerHTML;
+						
+						
+						document.getElementById('btn_submit').value="Update";
+						
+						//updaterecord(this);
+						//btn.addEventListener('click',function (){
+						//btn.click(function(){
+						//btn.text("update");
+						//change button text on click
+						
+						//btn.textcontent='Update'; 
+					
+						return false;
+						
+					
+					}
+					
+					function updaterecord(formdata)
+					{
+						debugger;
+						//var selectedrow;
+						selectedrow.cells[0].innerHTML =formdata.name;
+						selectedrow.cells[1].innerHTML= formdata.degree;
+						selectedrow.cells[2].innerHTML=formdata.email;
+						selectedrow.cells[3].innerHTML=formdata.password;
+						//selectedrow=this.selectedrow;
+						//document.getElementById("btn_submit").value="Submit";
+						return false;
+					}
+					
+					function ondelete(td)
+					{
+						//debugger;
+						if(confirm("are u sure delete this record"))
+						{
+							row=td.parentElement.parentElement;
+							document.getElementById("tbl_reg").deleteRow(row.rowIndex);
+							resetform();
+						}
+					}
+					
+						<!--debugger;-->	
+				</script>
+	</head/>
+</html>
+
+
+
